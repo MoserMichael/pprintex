@@ -1,3 +1,5 @@
+# based on https://github.com/python/cpython/blob/3.9/Lib/pprint.py
+
 #  Author:      Fred L. Drake, Jr.
 #               fdrake@acm.org
 #
@@ -40,13 +42,9 @@ import sys as _sys
 import types as _types
 from io import StringIO as _StringIO
 
-__all__ = [Print, "pprint","pformat","isreadable","isrecursive","saferepr",
+__all__ = ["pprint","pformat","isreadable","isrecursive","saferepr",
            "PrettyPrinter", "pp"]
 
-
-def Print(*args):
-    print(" ".join(map(lambda arg : pformat(arg.__dict__) if getattr(arg,"__dict__", None) != None else str(arg), args)))
-  
 
 def pprint(object, stream=None, indent=1, width=80, depth=None, *,
            compact=False, sort_dicts=True):
