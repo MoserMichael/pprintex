@@ -42,12 +42,15 @@ import sys as _sys
 import types as _types
 from io import StringIO as _StringIO
 
-__all__ = ["Print", "pprint","pformat","isreadable","isrecursive","saferepr",
+__all__ = ["dprint", "pprint","pformat","isreadable","isrecursive","saferepr",
            "PrettyPrinter", "pp"]
 
-# can't redefine builtin print function, so rename it to upper case. (not according to naming convention, though)
-def Print(*args):
-    print(" ".join(map(lambda arg : pformat(arg.__dict__) if getattr(arg,"__dict__", None) != None else str(arg), args)))
+# like built-in print, this one pretty prints all object arguments
+# can't redefine builtin print function, so rename it to dprint
+def dprint(*args, sep=' ', end='\n', file=_sys.stdout, flush=False):
+    to_print = sep.join(map(lambda arg : pformat(arg.__dict__) if getattr(arg,"__dict__", None) != None else str(arg), args))
+    print(to_print, end=end, file=file, flush=flush)
+        
  
 
 def pprint(object, stream=None, indent=1, width=80, depth=None, *,

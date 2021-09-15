@@ -22,7 +22,7 @@ ch = GraphNode("node3")
 root.add_link(ch)
 ch.add_link(root)
 
-pprintex.Print("graph", root)
+pprintex.dprint("graph: ", root)
 
 
 
