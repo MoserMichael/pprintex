@@ -42,9 +42,13 @@ import sys as _sys
 import types as _types
 from io import StringIO as _StringIO
 
-__all__ = ["pprint","pformat","isreadable","isrecursive","saferepr",
+__all__ = ["Print", "pprint","pformat","isreadable","isrecursive","saferepr",
            "PrettyPrinter", "pp"]
 
+# can't redefine builtin print function, so rename it to upper case. (not according to naming convention, though)
+def Print(*args):
+    print(" ".join(map(lambda arg : pformat(arg.__dict__) if getattr(arg,"__dict__", None) != None else str(arg), args)))
+ 
 
 def pprint(object, stream=None, indent=1, width=80, depth=None, *,
            compact=False, sort_dicts=True):
@@ -595,8 +599,19 @@ def _safe_repr(object, context, maxlevels, level, sort_dicts):
         del context[objid]
         return format % ", ".join(components), readable, recursive
 
-    rep = repr(object)
+    ##rep = repr(object)
+    ##return rep, (rep and not rep.startswith('<')), False
+
+    if getattr(object,"__dict__", None) != None:
+        rec = _safe_repr(object.__dict__, context, maxlevels, level, sort_dicts)
+        rep = str(type(object)) +  " at " + hex(id(object)) +  " fields: " + rec[0]
+    else:
+        # should not get here
+        rep = str(type(object)) +  " at " + hex(id(object))
+    
     return rep, (rep and not rep.startswith('<')), False
+
+    
 
 _builtin_scalars = frozenset({str, bytes, bytearray, int, float, complex,
                               bool, type(None)})
