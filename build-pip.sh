@@ -9,7 +9,7 @@ mkdir -p staging_dir/src/pywrap
 mkdir -p staging_dir/tests
 
 cp *.py staging_dir/tests
-cp pprintex/*.py staging_dir/src/pprintex
+cp pprintex staging_dir/src/pprintex
 cp LICENSE.txt README.md staging_dir
 cp pip-build/* staging_dir
 
