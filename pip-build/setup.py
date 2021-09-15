@@ -10,8 +10,7 @@ setuptools.setup(
     version = "0.0.1",
     author = "Michael Moser",
     author_email = "moser.michael@gmail.com",
-    description = ("similar to pprint, but shows all object field values
-"),
+    description = ("similar to pprint, but shows all object field values."),
     license = "MIT",                                                               
     keywords = "debugging, tracing, pretty printing",
     url = "https://github.com/MoserMichael/pprintex",
