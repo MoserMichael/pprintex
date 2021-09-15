@@ -621,7 +621,7 @@ _builtin_scalars = frozenset({str, bytes, bytearray, int, float, complex,
 
 def _recursion(object):
     return ("<Recursion on %s with id=%s>"
-            % (type(object).__name__, id(object)))
+            % (type(object).__name__, hex(id(object))))
 
 
 def _perfcheck(object=None):
