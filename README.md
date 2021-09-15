@@ -1,4 +1,4 @@
-# pprintex - module for pretty printing of objects.
+# printex - module for pretty printing of objects.
 
 This module is based on python module [pprint](https://docs.python.org/3/library/pprint.html), I copied the sources and made some modifications.
 
@@ -6,6 +6,11 @@ The change is as follows: pprintex also shows the field values, for each object 
 
 The module exports the same functions as pprint, it also adds the ```dprint``` function, which is quite similar to the built-in [print](https://docs.python.org/3/library/functions.html#print) function, with the difference that object arguments are pretty printed.
 
+# installation
+
+```pip install printex```
+
+This module is on pip [link](https://pypi.org/project/printex/)
 
 # test program
 
