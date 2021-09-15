@@ -9,9 +9,9 @@ mkdir -p staging_dir/src/pywrap
 mkdir -p staging_dir/tests
 
 cp *.py staging_dir/tests
-cp pprintex staging_dir/src/pprintex
+cp -rf pprintex/ staging_dir/src/pprintex
 cp LICENSE.txt README.md staging_dir
-cp pip-build/* staging_dir
+cp -rf pip-build/* staging_dir
 
 if [[ -f build.zip ]]; then
     rm build.zip
