@@ -89,10 +89,10 @@ graph:  <class '__main__.GraphNode'> at 0x7f861cb18df0 fields: {
 
 # API
 
-- ```class printex.PrettyPrint( indentation_level = 0, stream = None )
+- ```class printex.PrettyPrint( indentation_level = 0, stream = None )```
    -  constructs a pretty printer object. The amount of indentation added for each recursive level is specified by  *indentation_level*
 
-- printex.dprint( *args, sep=' ', end='\n', file=sys.stdout, flush=False )
+- ```printex.dprint( *args, sep=' ', end='\n', file=sys.stdout, flush=False)```
     - function is a replacement for built in ```print```, all arguments other than strings are pretty printed.
 
 - ```class printex.PrettyPrintCfg```
@@ -104,6 +104,6 @@ graph:  <class '__main__.GraphNode'> at 0x7f861cb18df0 fields: {
         - ```force_repr``` - default: empty; force repr for this set of types
         - ```_dispatch``` - internal: dispatch for formatting function per type.
 
-- pformat(obj, indentation_level=0)
+- ```pformat(obj, indentation_level=0)```
     - pretty pint ```obj``` and return the string
 
