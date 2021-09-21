@@ -7,7 +7,7 @@ def read(fname):
 
 setuptools.setup(
     name = "printex", 
-    version = "0.0.4",
+    version = "0.0.5",
     author = "Michael Moser",
     author_email = "moser.michael@gmail.com",
     description = ("similar to pprint, but shows all object field values."),
