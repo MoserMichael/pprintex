@@ -53,34 +53,34 @@ printex.dprint("graph: ", root)
 # Output of test program
 
 ```
-graph:  <class '__main__.GraphNode'> at 0x7f861cb18df0 fields: {
+graph:  <class '__main__.GraphNode'> at 0x7fa2edb18cd0 fields: {
   'name' : 'root',
   'links' : [
-    <class '__main__.GraphNode'> at 0x7f861cb18cd0 fields: {
+    <class '__main__.GraphNode'> at 0x7fa2edb18bb0 fields: {
       'name' : 'node1',
       'links' : [
       ]
     },
-    <class '__main__.GraphNode'> at 0x7f861cb18b20 fields: {
+    <class '__main__.GraphNode'> at 0x7fa2edb18a00 fields: {
       'name' : 'node2',
       'links' : [
-        <class '__main__.GraphNode'> at 0x7f861cb18a30 fields: {
+        <class '__main__.GraphNode'> at 0x7fa2edb18910 fields: {
           'name' : 'node1.1',
           'links' : [
           ]
         },
-        <class '__main__.GraphNode'> at 0x7f861cb189a0 fields: {
+        <class '__main__.GraphNode'> at 0x7fa2edb18730 fields: {
           'name' : 'node2.1',
           'links' : [
           ]
         },
-        <Recursion on GraphNode with id=0x7f861cb18df0>
+        <Recursion on <class '__main__.GraphNode'> with id=0x7fa2edb18cd0>
       ]
     },
-    <class '__main__.GraphNode'> at 0x7f861cb18be0 fields: {
+    <class '__main__.GraphNode'> at 0x7fa2edb18ac0 fields: {
       'name' : 'node3',
       'links' : [
-        <Recursion on GraphNode with id=0x7f861cb18df0>
+        <Recursion on <class '__main__.GraphNode'> with id=0x7fa2edb18cd0>
       ]
     }
   ]

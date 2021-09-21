@@ -47,7 +47,7 @@ def pformat(obj, indentation_level=0):
 
 def _recursion(object):
     return ("<Recursion on %s with id=%s>"
-            % (type(object).__name__, hex(id(object))))
+            % (str(type(object)), hex(id(object))))
 
 def _indent_string(indentation_level):
     prefix = "(" + str(indentation_level) + ")" if PrettyPrintCfg.show_nesting_prefix else ''
