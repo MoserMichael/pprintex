@@ -4,13 +4,13 @@ This module is a pretty printer of python objects. A pretty printer shows the st
 This module some similarities with [pprint](https://docs.python.org/3/library/pprint.html); but this is a new implementation.
 Now this module also shows the field values for argument object, if the field values are objects, then it shows these objects, recursively.  To me that makes much more sense than what pprint is doing.
 
-# installation
+# Installation
 
 ```pip install printex```
 
 This module is on pip [link](https://pypi.org/project/printex/)
 
-# test program
+# Test program
 
 ```
 import printex
@@ -50,7 +50,7 @@ ch2.add_link(root)
 printex.dprint("graph: ", root)
 ```
 
-# output of test program
+# Output of test program
 
 ```
 graph:  <class '__main__.GraphNode'> at 0x7f861cb18df0 fields: {
