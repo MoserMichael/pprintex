@@ -1,10 +1,8 @@
 # printex - module for pretty printing of objects.
 
-This module is based on python module [pprint](https://docs.python.org/3/library/pprint.html), I copied the sources and made some modifications.
-
-The change is as follows: pprintex also shows the field values, for each object that is pretty printed.
-
-The module exports the same functions as pprint, it also adds the ```dprint``` function, which is quite similar to the built-in [print](https://docs.python.org/3/library/functions.html#print) function, with the difference that object arguments are pretty printed.
+This module is a pretty printer of python objects. A pretty printer shows the structure of an object, if the argument is a collection then it displays the structure of each element.
+This module some similarities with [pprint](https://docs.python.org/3/library/pprint.html); but this is a new implementation.
+Now this module also shows the field values for argument object, if the field values are objects, then it shows these objects, recursively.  To me that makes much more sense than what pprint is doing.
 
 # installation
 
@@ -15,7 +13,7 @@ This module is on pip [link](https://pypi.org/project/printex/)
 # test program
 
 ```
-import pprintex
+import printex
 
 class Node:
     def __init__(self, name):
@@ -32,22 +30,80 @@ class GraphNode(Node):
 root = GraphNode("root")
 ch = GraphNode("node1")
 root.add_link(ch)
-ch = GraphNode("node2")
-root.add_link(ch)
+ch2 = GraphNode("node2")
+root.add_link(ch2)
 ch = GraphNode("node3")
 root.add_link(ch)
 ch.add_link(root)
 
-pprintex.dprint("graph: ", root)
+next_ch = GraphNode("node1.1")
+ch2.add_link(next_ch)
+
+next_ch = GraphNode("node2.1")
+ch2.add_link(next_ch)
+
+next_ch = GraphNode("node2.1")
+ch2.add_link(root)
+
+
+
+printex.dprint("graph: ", root)
 ```
 
 # output of test program
 
 ```
-graph:  {'links': [<class '__main__.GraphNode'> at 0x7f8aac43bf70 fields: {'links': [], 'name': 'node1'},
-           <class '__main__.GraphNode'> at 0x7f8aac43bee0 fields: {'links': [], 'name': 'node2'},
-           <class '__main__.GraphNode'> at 0x7f8aac43bd60 fields: {'links': [<class '__main__.GraphNode'> at 0x7f8aac43bfd0 fields: <Recursion on dict with id=140233570241280>], 'name': 'node3'}],
- 'name': 'root'}
+graph:  <class '__main__.GraphNode'> at 0x7f861cb18df0 fields: {
+  'name' : 'root',
+  'links' : [
+    <class '__main__.GraphNode'> at 0x7f861cb18cd0 fields: {
+      'name' : 'node1',
+      'links' : [
+      ]
+    },
+    <class '__main__.GraphNode'> at 0x7f861cb18b20 fields: {
+      'name' : 'node2',
+      'links' : [
+        <class '__main__.GraphNode'> at 0x7f861cb18a30 fields: {
+          'name' : 'node1.1',
+          'links' : [
+          ]
+        },
+        <class '__main__.GraphNode'> at 0x7f861cb189a0 fields: {
+          'name' : 'node2.1',
+          'links' : [
+          ]
+        },
+        <Recursion on GraphNode with id=0x7f861cb18df0>
+      ]
+    },
+    <class '__main__.GraphNode'> at 0x7f861cb18be0 fields: {
+      'name' : 'node3',
+      'links' : [
+        <Recursion on GraphNode with id=0x7f861cb18df0>
+      ]
+    }
+  ]
+}
 ```
 
+# API
+
+- ```class printex.PrettyPrint( indentation_level = 0, stream = None )
+   -  constructs a pretty printer object. The amount of indentation added for each recursive level is specified by  *indentation_level*
+
+- printex.dprint( *args, sep=' ', end='\n', file=sys.stdout, flush=False )
+    - function is a replacement for built in ```print```, all arguments other than strings are pretty printed.
+
+- ```class printex.PrettyPrintCfg```
+    - configuration object for the pretty printer. has the following static members.
+        - ```indent_string``` default value ' '; for each indentation level displays this string, can swap this to do tabs instead
+        - ```space_per_indentation_level``` - default value 2, each indentation level shows this number of indent_string instances
+        - ```use_repr_for_objects`` - default False, if set to true: don't display fields for an object, use repr instead
+        - ```how_nesting_prefix``` - for each line: show the nesting level.
+        - ```force_repr``` - default: empty; force repr for this set of types
+        - ```_dispatch``` - internal: dispatch for formatting function per type.
+
+- pformat(obj, indentation_level=0)
+    - pretty pint ```obj``` and return the string
 

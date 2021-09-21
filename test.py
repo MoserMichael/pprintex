@@ -16,11 +16,22 @@ class GraphNode(Node):
 root = GraphNode("root")
 ch = GraphNode("node1")
 root.add_link(ch)
-ch = GraphNode("node2")
-root.add_link(ch)
+ch2 = GraphNode("node2")
+root.add_link(ch2)
 ch = GraphNode("node3")
 root.add_link(ch)
 ch.add_link(root)
+
+next_ch = GraphNode("node1.1")
+ch2.add_link(next_ch)
+
+next_ch = GraphNode("node2.1")
+ch2.add_link(next_ch)
+
+next_ch = GraphNode("node2.1")
+ch2.add_link(root)
+
+
 
 pprintex.dprint("graph: ", root)
 
