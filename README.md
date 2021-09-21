@@ -105,5 +105,5 @@ graph:  <class '__main__.GraphNode'> at 0x7f861cb18df0 fields: {
         - ```_dispatch``` - internal: dispatch for formatting function per type.
 
 - ```pformat(obj, indentation_level=0)```
-    - pretty pint ```obj``` and return the string
+    - return string that stands for pretty printed ```obj```.
 
