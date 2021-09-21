@@ -99,7 +99,7 @@ graph:  <class '__main__.GraphNode'> at 0x7f861cb18df0 fields: {
     - configuration object for the pretty printer. has the following static members.
         - ```indent_string``` default value ' '; for each indentation level displays this string, can swap this to do tabs instead
         - ```space_per_indentation_level``` - default value 2, each indentation level shows this number of indent_string instances
-        - ```use_repr_for_objects`` - default False, if set to true: don't display fields for an object, use repr instead
+        - ```use_repr_for_objects``` - default False, if set to true: don't display fields for an object, use repr instead
         - ```how_nesting_prefix``` - for each line: show the nesting level.
         - ```force_repr``` - default: empty; force repr for this set of types
         - ```_dispatch``` - internal: dispatch for formatting function per type.
