@@ -13,7 +13,7 @@ This module is on pip [link](https://pypi.org/project/printex/)
 # Test program
 
 ```
-import printex
+import pprintex
 
 class Node:
     def __init__(self, name):
