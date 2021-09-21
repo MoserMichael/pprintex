@@ -42,7 +42,6 @@ ch2.add_link(next_ch)
 next_ch = GraphNode("node2.1")
 ch2.add_link(next_ch)
 
-next_ch = GraphNode("node2.1")
 ch2.add_link(root)
 
 
