@@ -1,8 +1,10 @@
 # printex - module for pretty printing of objects.
 
-This module is a pretty printer of python objects. A pretty printer shows the structure of an object. If the argument is a collection, then it displays the structure of each element.
+This library is a pretty printer of python objects. A pretty printer shows the structure of an object. If the argument is a collection, then it displays the structure of each element.
 This module has some similarities with [pprint](https://docs.python.org/3/library/pprint.html); however this is a new implementation.
 This module also shows the field values for an argument object; if the field values are themself objects, then their structure is also shows, recursively. To me that makes much more sense than what pprint is doing.
+
+This library works with python3.
 
 # Installation
 
