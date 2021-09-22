@@ -8,7 +8,7 @@ This library works with python3.
 
 # Installation
 
-```pip install printex```
+```pip3 install printex```
 
 This module is on pip [link](https://pypi.org/project/printex/)
 
