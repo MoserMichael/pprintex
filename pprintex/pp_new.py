@@ -10,7 +10,7 @@ __all__ = [ "dprint", "pformat", "PrettyPrintCfg", "PrettyPrint" ]
 
 # like built-in print, this one pretty prints all object arguments
 # can't redefine builtin print function, so rename it to dprint
-def dprint(*args, sep=' ', end='\n', file=sys.stdout, flush=False):
+def dprint(*args, sep=' ', end='\n', indentation_level = 0, file=sys.stdout, flush=False):
     to_print = sep.join(map(lambda arg : pformat(arg) if not isinstance(arg, str) else str(arg), args))
     print(to_print, end=end, file=file, flush=flush)
 
