@@ -1,5 +1,6 @@
 # printex - module for pretty printing of objects.
 
+
 This library is a pretty printer of python objects. A pretty printer shows the structure of an object. If the argument is a collection, then it displays the structure of each element.
 This module has some similarities with [pprint](https://docs.python.org/3/library/pprint.html); however this is a new implementation.
 This module also shows the field values for an argument object; if the field values are themself objects, then their structure is also shows, recursively. To me that makes much more sense than what pprint is doing.
@@ -48,7 +49,7 @@ ch2.add_link(root)
 
 
 
-printex.dprint("graph: ", root)
+pprintex.dprint("graph: ", root)
 ```
 
 # Output of test program
@@ -90,13 +91,13 @@ graph:  <class '__main__.GraphNode'> at 0x7fa2edb18cd0 fields: {
 
 # API
 
-- ```class printex.PrettyPrint( indentation_level = 0, stream = None )```
+- ```class pprintex.PrettyPrint( indentation_level = 0, stream = None )```
    -  constructs a pretty printer object. The amount of indentation added for each recursive level is specified by  *indentation_level*
 
-- ```printex.dprint( *args, sep=' ', end='\n', file=sys.stdout, flush=False)```
+- ```pprintex.dprint( *args, sep=' ', end='\n', file=sys.stdout, flush=False)```
     - function is a replacement for built in ```print```, all arguments other than strings are pretty printed.
 
-- ```class printex.PrettyPrintCfg```
+- ```class pprintex.PrettyPrintCfg```
     - configuration object for the pretty printer. has the following static members.
         - ```indent_string``` default value ' '; for each indentation level displays this string, can swap this to do tabs instead
         - ```space_per_indentation_level``` - default value 2, each indentation level shows this number of indent_string instances
@@ -105,6 +106,6 @@ graph:  <class '__main__.GraphNode'> at 0x7fa2edb18cd0 fields: {
         - ```force_repr``` - default: empty; force repr for this set of types
         - ```_dispatch``` - internal: dispatch for formatting function per type.
 
-- ```pformat(obj, indentation_level=0)```
+- ```pprintex.pformat(obj, indentation_level=0)```
     - return string that stands for pretty printed ```obj```.
 
