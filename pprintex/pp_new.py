@@ -38,6 +38,9 @@ class PrettyPrintCfg:
     builtin_scalars = frozenset({str, bytes, bytearray, int, float, complex,
                               bool, type(None)})
 
+    @staticmethod
+    def register_handler(class_type, func):
+        PrettyPrintCfg.dispatch[class_type] = func
 
 
 
@@ -62,7 +65,7 @@ class PrettyPrint:
         if indentation_level < 0:
             raise ValueError('indent must be >= 0')
         self._indent = indentation_level
-        self._context = dict()
+        self._context = {}
 
 
     def pformat(self, obj):
@@ -199,22 +202,27 @@ class PrettyPrint:
         print("mappingobjid:", hash(id(obj.copy())))
         self._pformat(obj.copy(), indentation_level, show_leading_spaces)
 
+    @staticmethod
+    def register():
+        PrettyPrintCfg.register_handler(dict.__repr__, PrettyPrint._pprint_dict)
+        PrettyPrintCfg.register_handler(collections.UserDict.__repr__,  PrettyPrint._pprint_dict)
+        PrettyPrintCfg.register_handler(collections.OrderedDict.__repr__, PrettyPrint._pprint_dict)
+        PrettyPrintCfg.register_handler(collections.Counter.__repr__, PrettyPrint._pprint_dict)
+        PrettyPrintCfg.register_handler(types.MappingProxyType.__repr__, PrettyPrint._print_mappingproxy)
+
+        PrettyPrintCfg.register_handler(list.__repr__, PrettyPrint._pprint_list)
+        PrettyPrintCfg.register_handler(collections.deque.__repr__,  PrettyPrint._pprint_list)
+        PrettyPrintCfg.register_handler(tuple.__repr__, PrettyPrint._pprint_list)
+        PrettyPrintCfg.register_handler(set.__repr__, PrettyPrint._pprint_list)
+        PrettyPrintCfg.register_handler(frozenset.__repr__, PrettyPrint._pprint_list)
+
+        PrettyPrintCfg.register_handler(collections.UserList.__repr__, PrettyPrint._print_user_obj)
+        PrettyPrintCfg.register_handler(collections.UserString.__repr__, PrettyPrint._print_user_obj)
+
 
 def init_dict():
-    PrettyPrintCfg.dispatch[dict.__repr__] = PrettyPrint._pprint_dict
-    PrettyPrintCfg.dispatch[collections.UserDict.__repr__] = PrettyPrint._pprint_dict
-    PrettyPrintCfg.dispatch[collections.OrderedDict.__repr__] = PrettyPrint._pprint_dict
-    PrettyPrintCfg.dispatch[collections.Counter.__repr__] = PrettyPrint._pprint_dict
-    PrettyPrintCfg.dispatch[types.MappingProxyType.__repr__] = PrettyPrint._print_mappingproxy
 
-    PrettyPrintCfg.dispatch[list.__repr__] = PrettyPrint._pprint_list
-    PrettyPrintCfg.dispatch[collections.deque.__repr__] = PrettyPrint._pprint_list
-    PrettyPrintCfg.dispatch[tuple.__repr__] = PrettyPrint._pprint_list
-    PrettyPrintCfg.dispatch[set.__repr__] = PrettyPrint._pprint_list
-    PrettyPrintCfg.dispatch[frozenset.__repr__] = PrettyPrint._pprint_list
-
-    PrettyPrintCfg.dispatch[collections.UserList.__repr__] = PrettyPrint._print_user_obj
-    PrettyPrintCfg.dispatch[collections.UserString.__repr__] = PrettyPrint._print_user_obj
+    PrettyPrint.register()
 
 
 init_dict()
