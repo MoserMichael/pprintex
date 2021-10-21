@@ -28,6 +28,9 @@ class PrettyPrintCfg:
     # for each line: show the nesting level.
     show_nesting_prefix = False
 
+    # show  obj id for mapping proxy
+    show_mapping_obj = False
+
     # functions to format per type repr
     dispatch = {}
 
@@ -199,7 +202,9 @@ class PrettyPrint:
         self._pformat(obj.data, indentation_level, show_leading_spaces)
 
     def _print_mappingproxy(self, obj, indentation_level, show_leading_spaces):
-        print("mappingobjid:", hash(id(obj.copy())))
+        write = self._stream.write
+        if PrettyPrintCfg.show_mapping_obj:
+            write("mappingobjid: " + hash(id(obj.copy())) + "\n")
         self._pformat(obj.copy(), indentation_level, show_leading_spaces)
 
     @staticmethod
@@ -208,7 +213,6 @@ class PrettyPrint:
         PrettyPrintCfg.register_handler(collections.UserDict.__repr__,  PrettyPrint._pprint_dict)
         PrettyPrintCfg.register_handler(collections.OrderedDict.__repr__, PrettyPrint._pprint_dict)
         PrettyPrintCfg.register_handler(collections.Counter.__repr__, PrettyPrint._pprint_dict)
-        PrettyPrintCfg.register_handler(types.MappingProxyType.__repr__, PrettyPrint._print_mappingproxy)
 
         PrettyPrintCfg.register_handler(list.__repr__, PrettyPrint._pprint_list)
         PrettyPrintCfg.register_handler(collections.deque.__repr__,  PrettyPrint._pprint_list)
@@ -218,6 +222,8 @@ class PrettyPrint:
 
         PrettyPrintCfg.register_handler(collections.UserList.__repr__, PrettyPrint._print_user_obj)
         PrettyPrintCfg.register_handler(collections.UserString.__repr__, PrettyPrint._print_user_obj)
+
+        PrettyPrintCfg.register_handler(types.MappingProxyType.__repr__, PrettyPrint._print_mappingproxy)
 
 
 def init_dict():
